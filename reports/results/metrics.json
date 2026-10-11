@@ -1,0 +1,22 @@
+{
+  "average_precision": 0.5092319288254696,
+  "roc_auc": 0.726349055222623,
+  "brier_score": 0.1452141050074105,
+  "precision": 0.3911612599905971,
+  "recall": 0.6274509803921569,
+  "f1": 0.4818997972777295,
+  "expected_classification_cost": 3765.0,
+  "true_negatives": 3372,
+  "false_positives": 1295,
+  "false_negatives": 494,
+  "true_positives": 832,
+  "decision_threshold": 0.23,
+  "validation_cost_at_threshold": 3685.0,
+  "false_negative_cost": 5.0,
+  "false_positive_cost": 1.0,
+  "default_prevalence": 0.22125813449023862,
+  "train_rows": 17979,
+  "validation_rows": 5993,
+  "test_rows": 5993,
+  "random_seed": 42
+}

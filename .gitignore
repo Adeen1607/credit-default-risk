@@ -4,3 +4,9 @@ __pycache__/
 artifacts/
 data/
 *.joblib
+
+# Local experiment details; only aggregates and charts are published.
+reports/results/*.csv
+reports/results/*.joblib
+__pycache__/
+_site/

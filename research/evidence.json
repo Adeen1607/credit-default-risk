@@ -1,0 +1,15 @@
+{
+  "repository": "Adeen1607/credit-default-risk",
+  "review_date": "2026-10-11",
+  "evidence_note": "Fresh execution on 11 October 2026 using the committed pipeline and seed 42. Five-fold sigmoid calibration was fitted only on training partitions. On **5,993** held-out records, precision was **39.1%**, recall **62.7%** and average precision **0.5092**. The test set contained **494** missed positives and **1295** false alerts. These are retrospective sample results.\n\n| Measure | Value |\n|---|---:|\n| average precision | 0.5092 |\n| roc auc | 0.7263 |\n| brier score | 0.1452 |\n| precision | 0.3912 |\n| recall | 0.6275 |\n| f1 | 0.4819 |\n| expected classification cost | 3765.0000 |\n| true negatives | 3372 |\n| false positives | 1295 |\n| false negatives | 494 |\n| true positives | 832 |\n| decision threshold | 0.2300 |\n| validation cost at threshold | 3685.0000 |\n| false negative cost | 5.0000 |\n| false positive cost | 1.0000 |\n| default prevalence | 0.2213 |\n| train rows | 17979 |\n| validation rows | 5993 |\n| test rows | 5993 |\n| random seed | 42 |\n\n",
+  "inputs": [
+    {
+      "path": "notebooks/key_visuals.ipynb",
+      "sha256": "f4188ff42dc58df4eaba7ed74b9f7007d45ccca92268c7db313cdc322abb4472"
+    },
+    {
+      "path": "reports/results/metrics.json",
+      "sha256": "d10de6271199cf7d576303740ab4cd76145e920d95bd4fbb4e06fc19084d3901"
+    }
+  ]
+}

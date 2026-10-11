@@ -1,0 +1,91 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Calibrated Credit Default Risk</title><link rel="stylesheet" href="style.css"></head><body><header><div><p class="meta">Mohammed Adeen Shaik · Research and coursework</p><h1>Calibrated Credit Default Risk</h1><nav><a href="index.html">Overview</a><a href="report.html">Research report</a><a href="notebooks.html">Explained notebooks</a><a href="https://github.com/Adeen1607/credit-default-risk">Source repository</a></nav></div></header><main><h2>The study</h2><p>How does a calibrated baseline trade off missed defaults against false alerts under an explicit cost assumption?</p><p>UCI Default of Credit Card Clients dataset.</p><h2>What the evidence shows</h2><p>Fresh execution on 11 October 2026 using the committed pipeline and seed 42. Five-fold sigmoid calibration was fitted only on training partitions. On <strong>5,993</strong> held-out records, precision was <strong>39.1%</strong>, recall <strong>62.7%</strong> and average precision <strong>0.5092</strong>. The test set contained <strong>494</strong> missed positives and <strong>1295</strong> false alerts. These are retrospective sample results.</p>
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>average precision</td>
+<td style="text-align: right;">0.5092</td>
+</tr>
+<tr>
+<td>roc auc</td>
+<td style="text-align: right;">0.7263</td>
+</tr>
+<tr>
+<td>brier score</td>
+<td style="text-align: right;">0.1452</td>
+</tr>
+<tr>
+<td>precision</td>
+<td style="text-align: right;">0.3912</td>
+</tr>
+<tr>
+<td>recall</td>
+<td style="text-align: right;">0.6275</td>
+</tr>
+<tr>
+<td>f1</td>
+<td style="text-align: right;">0.4819</td>
+</tr>
+<tr>
+<td>expected classification cost</td>
+<td style="text-align: right;">3765.0000</td>
+</tr>
+<tr>
+<td>true negatives</td>
+<td style="text-align: right;">3372</td>
+</tr>
+<tr>
+<td>false positives</td>
+<td style="text-align: right;">1295</td>
+</tr>
+<tr>
+<td>false negatives</td>
+<td style="text-align: right;">494</td>
+</tr>
+<tr>
+<td>true positives</td>
+<td style="text-align: right;">832</td>
+</tr>
+<tr>
+<td>decision threshold</td>
+<td style="text-align: right;">0.2300</td>
+</tr>
+<tr>
+<td>validation cost at threshold</td>
+<td style="text-align: right;">3685.0000</td>
+</tr>
+<tr>
+<td>false negative cost</td>
+<td style="text-align: right;">5.0000</td>
+</tr>
+<tr>
+<td>false positive cost</td>
+<td style="text-align: right;">1.0000</td>
+</tr>
+<tr>
+<td>default prevalence</td>
+<td style="text-align: right;">0.2213</td>
+</tr>
+<tr>
+<td>train rows</td>
+<td style="text-align: right;">17979</td>
+</tr>
+<tr>
+<td>validation rows</td>
+<td style="text-align: right;">5993</td>
+</tr>
+<tr>
+<td>test rows</td>
+<td style="text-align: right;">5993</td>
+</tr>
+<tr>
+<td>random seed</td>
+<td style="text-align: right;">42</td>
+</tr>
+</tbody>
+</table><h2>Read the work</h2><p><a href="report.html">Research report and final result figures</a> · <a href="notebooks.html">Explained notebooks</a></p><h2>Interpretation</h2><p>Assumed error costs are not observed financial losses. Historical Taiwan records do not establish suitability for current Canadian lending. Demographic variables need fairness review before any operational use.</p><footer>Evidence dates and limitations are documented in the report. Static pages display saved outputs; they do not execute Python, R, Streamlit or API calls.</footer></main></body></html>
