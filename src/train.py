@@ -72,21 +72,44 @@ def choose_threshold(
     false_negative_cost: float,
     false_positive_cost: float,
 ) -> tuple[float, float]:
-    rows = []
-    for threshold in np.linspace(0.01, 0.99, 99):
-        predictions = (probabilities >= threshold).astype(int)
-        tn, fp, fn, tp = confusion_matrix(
-            labels, predictions, labels=[0, 1]
-        ).ravel()
-        total_cost = fn * false_negative_cost + fp * false_positive_cost
-        rows.append((threshold, total_cost, tn, fp, fn, tp))
+    """Find the lowest-cost exact probability cutoff in O(n log n) time.
 
-    table = pd.DataFrame(
-        rows,
-        columns=["threshold", "cost", "tn", "fp", "fn", "tp"],
+    Each distinct predicted score can change a >= threshold decision. The
+    cutoff just above the maximum score represents predicting no defaults.
+    Equal-cost candidates use the smallest threshold, as before.
+    """
+    scores = np.asarray(probabilities, dtype=float)
+    targets = np.asarray(labels, dtype=int)
+    if (
+        scores.ndim != 1
+        or targets.ndim != 1
+        or not len(scores)
+        or len(scores) != len(targets)
+    ):
+        raise ValueError("labels and probabilities must be nonempty, aligned vectors")
+    if not np.isfinite(scores).all() or ((scores < 0) | (scores > 1)).any():
+        raise ValueError("probabilities must be finite and between zero and one")
+    if not np.isin(targets, [0, 1]).all():
+        raise ValueError("labels must be binary")
+    if false_negative_cost <= 0 or false_positive_cost <= 0:
+        raise ValueError("Classification costs must be positive.")
+
+    order = np.argsort(scores, kind="stable")
+    sorted_scores, sorted_targets = scores[order], targets[order]
+    thresholds, first_indices = np.unique(sorted_scores, return_index=True)
+    positive_prefix = np.r_[0, np.cumsum(sorted_targets)]
+    false_negatives = positive_prefix[first_indices]
+    false_positives = (
+        len(targets) - positive_prefix[-1] - (first_indices - false_negatives)
     )
-    selected = table.sort_values(["cost", "threshold"]).iloc[0]
-    return float(selected["threshold"]), float(selected["cost"])
+    costs = (
+        false_negatives * false_negative_cost
+        + false_positives * false_positive_cost
+    )
+    thresholds = np.r_[thresholds, np.nextafter(thresholds[-1], np.inf)]
+    costs = np.r_[costs, positive_prefix[-1] * false_negative_cost]
+    selected = int(np.argmin(costs))
+    return float(thresholds[selected]), float(costs[selected])
 
 
 def evaluate(
