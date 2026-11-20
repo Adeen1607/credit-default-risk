@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 
 import joblib
@@ -161,8 +162,8 @@ def train(
     false_positive_cost: float,
     seed: int,
 ) -> None:
-    if false_negative_cost <= 0 or false_positive_cost <= 0:
-        raise ValueError("Classification costs must be positive.")
+    if not all(math.isfinite(cost) and cost > 0 for cost in (false_negative_cost, false_positive_cost)):
+        raise ValueError("Classification costs must be finite positive numbers.")
 
     features, target = load_data()
     x_train, x_holdout, y_train, y_holdout = train_test_split(
